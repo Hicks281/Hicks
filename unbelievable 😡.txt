@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILITARY BASE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://img.wapka.io/00eip2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .logo {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+        .title {
+            text-align: center;
+            color: #fff;
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #fff;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .category {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .subcategories {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .subcategory {
+            display: none;
+        }
+        .subcategory.active {
+            display: block;
+        }
+        .subcategory img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://img.wapka.io/00eilc.jpg" alt="Logo" class="logo">
+    <div class="title">MILITARY BASE</div>
+    <div class="subtitle">Your Ultimate Destination for Phones, Laptops, Headsets, and More</div>
+
+    <div class="slider">
+        <div class="slides">
+            <div class="slide"><img src="https://img.wapka.io/00eims.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="slide_image_url_2" alt="Slide 2"></div>
+            <!-- Add more slides here -->
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <div class="categories">
+        <img src="category_image_url" alt="IPHONE" class="category" data-category="iphone">
+        <img src="category_image_url" alt="TECNO" class="category" data-category="tecno">
+        <!-- Add more category images -->
+    </div>
+
+    <div id="iphone" class="subcategories">
+        <div class="subcategory">
+            <!-- iPhone subcategories will be added here -->
+        </div>
+    </div>
+    <!-- Add more subcategory sections -->
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const slideCount = document.querySelectorAll('.slide').length;
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            if (index >= slideCount) currentIndex = 0;
+            else if (index < 0) currentIndex = slideCount - 1;
+            else currentIndex = index;
+
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            showSlide(currentIndex - 1);
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            showSlide(currentIndex + 1);
+        });
+
+        // Optional: Auto-slide functionality
+        setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 3000);
+
+        document.querySelectorAll('.category').forEach(function(category) {
+            category.addEventListener('click', function() {
+                const categoryName = this.getAttribute('data-category');
+                document.querySelectorAll('.subcategory').forEach(function(sub) {
+                    if (sub.id === categoryName) {
+                        sub.classList.toggle('active');
+                    } else {
+                        sub.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
